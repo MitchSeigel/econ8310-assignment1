@@ -24,9 +24,6 @@ test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw
 test_data['Timestamp'] = pd.to_datetime(test_data['Timestamp'])
 future = test_data.rename(columns={'Timestamp': 'ds'})
 
-# future = modelFit.make_future_dataframe(periods=31)
-# Fill in dataframe wtih forecasts of `y` for the future periods
-
 pred = modelFit.predict(future)
 
 # pred = pred[['ds', 'trend']]
@@ -38,34 +35,3 @@ pred['yhat'] = pred['yhat'].astype(int)
 pred = pred.set_index('ds')
 
 pred
-
-# test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_test.csv")
-# test_data
-
-# train_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_train.csv")
-# train_data
-
-# from statsmodels.tsa.holtwinters import ExponentialSmoothing
-# import pandas as pd
-
-# # Load training data
-# train_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_train.csv")
-# train_data['Timestamp'] = pd.to_datetime(train_data['Timestamp'])
-# train_data = train_data.set_index('Timestamp')
-
-# # Load test data
-# test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_test.csv")
-# test_data['Timestamp'] = pd.to_datetime(test_data['Timestamp'])
-# test_data = test_data.set_index('Timestamp')
-
-# # Create the exponential smoothing model
-# model = ExponentialSmoothing(train_data['trips'], seasonal='add')  # Assuming daily seasonality
-
-# # Fit the model
-# modelFit = model.fit()
-
-# start_date = '2023-01-01 00:00:00'  # Adjust the year as needed
-# end_date = '2023-01-31 23:00:00'  # Adjust the year as needed
-
-# pred = modelFit.predict(start=start_date, end=end_date)
-# pred
