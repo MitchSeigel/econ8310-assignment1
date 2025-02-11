@@ -20,12 +20,17 @@ data_p = data_p.rename(columns={'Timestamp': 'ds', 'trips': 'y'})
 model = Prophet()
 modelFit = model.fit(data_p)
 
-future = modelFit.make_future_dataframe(periods=31)
+test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_test.csv")
+test_data['Timestamp'] = pd.to_datetime(test_data['Timestamp'])
+future = test_data.rename(columns={'Timestamp': 'ds'})
+
+# future = modelFit.make_future_dataframe(periods=31)
 # Fill in dataframe wtih forecasts of `y` for the future periods
 
 pred = modelFit.predict(future)
 
 pred = pred[['ds', 'trend']]
+
 pred
 
 # test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_test.csv")
