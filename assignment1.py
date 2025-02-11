@@ -20,6 +20,25 @@ Original file is located at
 # m = Prophet()
 # m.fit(data_p)
 
+# future = m.make_future_dataframe(periods=365)
+# # Fill in dataframe wtih forecasts of `y` for the future periods
+
+# start_date = '2019-01-01 00:00:00'  # Adjust the year as needed
+# end_date = '2019-01-31 23:00:00'
+
+# forecast = m.predict(start=start_date, end=end_date)
+
+# forecast
+
+# from statsmodels.tsa.holtwinters import ExponentialSmoothing
+# import pandas as pd
+
+# # Load training data
+# train_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_train.csv")
+# train_data['Timestamp'] = pd.to_datetime(train_data['Timestamp'])
+# train_data = train_data.set_index('Timestamp')
+# train_data
+
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 import pandas as pd
 
@@ -34,7 +53,7 @@ test_data['Timestamp'] = pd.to_datetime(test_data['Timestamp'])
 test_data = test_data.set_index('Timestamp')
 
 # Create the exponential smoothing model
-model = ExponentialSmoothing(train_data['trips'], trend='add', seasonal='add', seasonal_periods=24)  # Assuming daily seasonality
+model = ExponentialSmoothing(train_data['trips'], seasonal='add')  # Assuming daily seasonality
 
 # Fit the model
 modelFit = model.fit()
