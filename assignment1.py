@@ -29,8 +29,13 @@ future = test_data.rename(columns={'Timestamp': 'ds'})
 
 pred = modelFit.predict(future)
 
-pred = pred[['ds', 'trend']]
-pred['trend'] = pred['trend'].astype(int)
+# pred = pred[['ds', 'trend']]
+# pred['trend'] = pred['trend'].astype(int)
+# pred = pred.set_index('ds')
+
+pred = pred[['ds', 'yhat']]
+pred['yhat'] = pred['yhat'].astype(int)
+pred = pred.set_index('ds')
 
 pred
 
