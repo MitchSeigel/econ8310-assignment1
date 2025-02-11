@@ -30,11 +30,15 @@ future = test_data.rename(columns={'Timestamp': 'ds'})
 pred = modelFit.predict(future)
 
 pred = pred[['ds', 'trend']]
+pred['trend'] = pred['trend'].astype(int)
 
 pred
 
 # test_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_test.csv")
 # test_data
+
+# train_data = pd.read_csv("https://github.com/dustywhite7/econ8310-assignment1/raw/main/assignment_data_train.csv")
+# train_data
 
 # from statsmodels.tsa.holtwinters import ExponentialSmoothing
 # import pandas as pd
